@@ -19,6 +19,8 @@ public class GetListBrandQuery : IRequest<GetListResponse<GetListBrandListItemDt
 
     public TimeSpan? SlidingExpiration { get; }
 
+    public string? CacheGroupKey => "GetBrands";
+
     public class GetListBrandQueryHandler : IRequestHandler<GetListBrandQuery, GetListResponse<GetListBrandListItemDto>>
     {
         private readonly IBrandRepository _brandRepository;
@@ -36,7 +38,7 @@ public class GetListBrandQuery : IRequest<GetListResponse<GetListBrandListItemDt
                 index: request.PageRequest.PageIndex,
                 size: request.PageRequest.PageSize,
                 cancellationToken: cancellationToken,
-                withDeleted: true);
+                withDeleted: false);
 
             GetListResponse<GetListBrandListItemDto> response = _mapper.Map<GetListResponse<GetListBrandListItemDto>>(brands);
             return response;
