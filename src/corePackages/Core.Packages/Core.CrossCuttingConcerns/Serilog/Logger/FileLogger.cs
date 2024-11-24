@@ -3,7 +3,7 @@ using Core.CrossCuttingConcerns.Serilog.Messages;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 
-namespace Core.CrossCuttingConcerns.Serilog.Loggers;
+namespace Core.CrossCuttingConcerns.Serilog.Logger;
 
 public class FileLogger : LoggerServiceBase
 {
@@ -13,7 +13,9 @@ public class FileLogger : LoggerServiceBase
     {
         _configuration = configuration;
 
-        FileLogConfiguration logConfig = configuration.GetSection("SerilogLogConfiguration:FileLogConfiguration").Get<FileLogConfiguration>() ?? throw new Exception(SerilogMessages.NullOptionsMessage);
+        FileLogConfiguration logConfig =
+            configuration.GetSection("SeriLogConfigurations:FileLogConfiguration").Get<FileLogConfiguration>()
+            ?? throw new Exception(SerilogMessages.NullOptionsMessage);
 
         string logFilePath = string.Format(format: "{0}{1}", arg0: Directory.GetCurrentDirectory() + logConfig.FolderPath, arg1: ".txt");
 

@@ -6,10 +6,11 @@ using AutoMapper;
 using Core.Persistence.Paging;
 using Domain.Entities;
 using Core.Application.Pipelines.Caching;
+using Core.Application.Pipelines.Logging;
 
 namespace Application.Features.Brands.Queries.GetList;
 
-public class GetListBrandQuery : IRequest<GetListResponse<GetListBrandListItemDto>>, ICachableRequest
+public class GetListBrandQuery : IRequest<GetListResponse<GetListBrandListItemDto>>, ICachableRequest, ILoggableRequest
 {
     public PageRequest PageRequest { get; set; }
 
