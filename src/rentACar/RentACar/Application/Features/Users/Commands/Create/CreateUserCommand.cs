@@ -1,9 +1,11 @@
-﻿using Application.Services.Repositories;
+﻿using Application.Features.Users.Rules;
+using Application.Services.Repositories;
 using AutoMapper;
 using Core.Application.Pipelines.Authorization;
 using Core.Security.Entities;
 using Core.Security.Hashing;
 using MediatR;
+using static Application.Features.Users.Constants.UsersOperationClaims;
 
 namespace Application.Features.Users.Commands.Create;
 
